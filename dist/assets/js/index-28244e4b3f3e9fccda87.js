@@ -1,0 +1,1 @@
+(self.webpackChunkwebpack_starter=self.webpackChunkwebpack_starter||[]).push([[826],{"5300b5bd44c2601a16a8":()=>{"use strict";window.addEventListener("load",(()=>{(class{static print(a){}}).print("Load")}))}},0,[["5300b5bd44c2601a16a8",666]]]);
