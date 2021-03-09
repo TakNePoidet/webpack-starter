@@ -1,4 +1,4 @@
-import "../style/index.scss";
+import '../style/index.scss';
 
 class Logger {
 	static print(text: string) {
@@ -6,6 +6,6 @@ class Logger {
 	}
 }
 
-window.addEventListener("load", () => {
-	Logger.print("Load");
+window.addEventListener('load', () => {
+	Logger.print('Load');
 });

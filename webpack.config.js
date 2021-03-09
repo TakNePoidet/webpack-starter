@@ -181,6 +181,7 @@ module.exports = env => {
 					}
 					const error = errors[0];
 
+					console.log(severity, error);
 					notifier.notify({
 						title: 'Webpack error',
 						message: `${severity}: ${error.name}`,

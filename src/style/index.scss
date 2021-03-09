@@ -1,14 +1,14 @@
 @import './util/reset';
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
 
-
 :root {
 	--primary-brand-color: #2d6dba;
-	--text-base:#222222;
+	--text-base: #222222;
 }
-html, body {
-  height: 100%;
-  margin: 0;
+html,
+body {
+	height: 100%;
+	margin: 0;
 }
 body {
 	width: 100%;
@@ -16,14 +16,14 @@ body {
 	font-family: 'Lato', sans-serif;
 	color: var(--text-base);
 }
-.container {
+#page-wrapper {
 	width: 1200px;
 	margin: 0px auto;
+	padding: 0px 30px;
 }
 
 .section {
 	&__content {
-
 	}
 }
 .section.section--home {
@@ -51,6 +51,5 @@ body {
 				letter-spacing: 4px;
 			}
 		}
-
 	}
 }
