@@ -121,18 +121,19 @@ module.exports = env => {
 					loader: 'vue-loader'
 				},
 				{
-					test: /\.(png|jpg|svg|gif)$/,
-					exclude: [/\.(inline.svg)/],
+					test: /\.(png|jpe?g|svg|gif)$/,
+					exclude: [/\.(inline.svg)$/],
 					loader: 'file-loader',
 					options: {
+              limit: 8192,
 						name: '[name]-[contenthash].[ext]',
-						outputPath: 'images',
+						outputPath: 'assets/images',
 						esModule: false,
 						useRelativePath: true
 					}
 				},
 				{
-					test: /\.(inline.svg)?$/,
+					test: /\.(inline.svg)$/,
 					loader: 'svg-inline-loader',
 					options: {
 						removeSVGTagAttrs: false
@@ -143,20 +144,35 @@ module.exports = env => {
 					loader: 'file-loader',
 					options: {
 						name: '[name]-[contenthash].[ext]',
-						outputPath: 'font',
+						outputPath: 'assets/font',
 						esModule: false
 					}
+				},
+				{
+					test: /\.html$/i,
+					use: [
+						{
+							loader: 'html-loader',
+							options: {
+								esModule: false,
+							}
+						}
+					]
 				},
 				{
 					test: /\.pug$/,
 					use: [
 						{
-							loader: 'html-loader'
+							loader: 'html-loader',
+							options: {
+								esModule: false
+							}
 						},
 						{
 							loader: 'pug-html-loader',
 							options: {
-								'pretty':true
+								'pretty':true,
+								basedir: path.resolve(__dirname, './src')
 							}
 						}
 					]
@@ -269,7 +285,7 @@ module.exports = env => {
 				contentBase: path.join(__dirname, 'dist'),
 				compress: true,
 				port: 8081,
-				open: true
+				open: false
 			}
 		});
 	}
@@ -310,6 +326,8 @@ module.exports = env => {
 				chunkFilename: 'assets/style/[name]-[contenthash].css'
 			}),
 			new ImageMinimizerPlugin({
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				deleteOriginalAssets: true,
 				minimizerOptions: {
 					plugins: [
 						['gifsicle', { interlaced: true }],
@@ -318,11 +336,7 @@ module.exports = env => {
 						[
 							'svgo',
 							{
-								plugins: [
-									{
-										removeViewBox: false
-									}
-								]
+
 							}
 						]
 					]

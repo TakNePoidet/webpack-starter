@@ -1,1 +1,5 @@
+node_modules
+build
 dist
+tsconfig.json
+webpack.config.js

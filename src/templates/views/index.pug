@@ -1,27 +1,29 @@
-doctype html
-html(lang="en")
-	head
-		meta(charset="UTF-8")
-		meta(http-equiv="X-UA-Compatible", content="IE=edge")
-		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		title Webpack Starter from TakNePoidet
-	body
-		div(id="page-wrapper")
-			section(class="section section--home")
-				div(class="container")
-					div(class="section__content")
-						div(class="home-title")
-							h1 Webpack Starter
-							div(class="home-title__author") from
-								b  TakNePoidet
+extends ../layout/main.pug
+block vars
+	- var title = "Webpack Starter от TakNePoidet";
+block content
+	section.section.section--home
+		.container
+			.section__content
+				.home-title
+					h1 Webpack Starter
+					.home-title__author от
+						b TakNePoidet
 
-			section(class="section")
-				div(class="container")
-					div(class="section__content")
-						h3 Описание
-						p Стартовый шаблон содержащий оптимальную конфигурацию Webpack для быстрого старта приложения или сайта
-
-			footer
-				div(class="container")
-					a(href="http://")
-
+	section.section
+		.container
+			h3.section__title Описание
+			.section__content
+				p Простой инструментарий веб-разработки с использованием <b>Webpack</b>. Подходит для создания статических HTML-шаблонов, разработки тем <b>Wordpress</b>, <b>Laravel</b> и frontend проекта.
+				figure
+					img(src='../../images/webpack.png', alt='')
+	section.section
+		.container
+			h3.section__title Возможности
+			.section__content
+				ul
+					li Современный и продвинутый <b>JavaScript</b>
+					li Поддержка фреймворков <b>Vue</b> и <b>React</b>
+					li Расширинная типизация с <b>TypeScript</b>
+					li Поддержка шаблонизатора <b>Pug</b>
+					li Делает код красивее с <b>Stylelint</b>, <b>Prettier</b>, <b>Eslint</b>
