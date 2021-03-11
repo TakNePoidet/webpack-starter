@@ -1,5 +1,5 @@
 <template lang="html"><div>1</div></template>
-<script >
+<script>
 export default {
 	data() {
 		return {

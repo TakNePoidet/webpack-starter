@@ -2,6 +2,7 @@ extends ../layout/main.pug
 block vars
 	- var title = "Webpack Starter от TakNePoidet";
 block content
+	include ../includes/icon.pug
 	section.section.section--home
 		.container
 			.section__content
@@ -14,16 +15,58 @@ block content
 		.container
 			h3.section__title Описание
 			.section__content
-				p Простой инструментарий веб-разработки с использованием <b>Webpack</b>. Подходит для создания статических HTML-шаблонов, разработки тем <b>Wordpress</b>, <b>Laravel</b> и frontend проекта.
+				p Простой инструментарий веб-разработки с использованием <mark>Webpack</mark>. Подходит для создания статических HTML-шаблонов, разработки тем <mark>Wordpress</mark>, <mark>Laravel</mark> и frontend проекта.
 				figure
 					img(src='../../images/webpack.png', alt='')
-	section.section
+	section.section.section--oportunities
 		.container
 			h3.section__title Возможности
 			.section__content
 				ul
-					li Современный и продвинутый <b>JavaScript</b>
-					li Поддержка фреймворков <b>Vue</b> и <b>React</b>
-					li Расширинная типизация с <b>TypeScript</b>
-					li Поддержка шаблонизатора <b>Pug</b>
-					li Делает код красивее с <b>Stylelint</b>, <b>Prettier</b>, <b>Eslint</b>
+					li
+						+icon('tick', 30, 30)
+						| Современный и продвинутый <mark>JavaScript</mark>;
+					li
+						+icon('tick', 30, 30)
+						| Поддержка фреймворков <mark>Vue</mark> и <mark>React</mark>;
+					li
+						+icon('tick', 30, 30)
+						| Расширинная типизация с <mark>TypeScript</mark>;
+					li
+						+icon('tick', 30, 30)
+						| Поддержка шаблонизатора <mark>Pug</mark>;
+					li
+						+icon('tick', 30, 30)
+						| Делает код красивее с <mark>Stylelint</mark>, <mark>Prettier</mark>, <mark>Eslint</mark>;
+					li
+						+icon('tick', 30, 30)
+						| Оптимизация всех ресурсов для более быстрой загрузки страницы;
+
+	section.section
+		.container
+			h3.section__title Команды
+			.section__content
+				p Запуск сервера в режиме разработки
+				pre
+					code.language-bash $ yarn start
+
+				p Запуск сервера в продакшен режиме
+				pre
+					code.language-bash $ yarn build
+
+				p Форматирование и проверка кода
+				pre
+					code.language-bash
+						| $ yarn lint # поверка JavaScript, TypeScript и Vue
+						| $ yarn stylelint # форматирование стилей
+						| $ yarn htmlhint # форматирование html
+						| $ yarn prettier # форматирование кода
+						| $ yarn beautifier # запуск всех команд для форматирования
+
+				p Герерация svg спрайта
+				pre
+					code.language-bash $ yarn svg-sprite
+
+				p Альтернативный синтаксис
+				pre
+					code.language-bash $ npm run &lt;script&gt;

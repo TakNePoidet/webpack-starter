@@ -6,6 +6,10 @@ html(lang='ru')
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
 		title= title
+		link(
+			rel='stylesheet',
+			href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css'
+		)
 body
 	#page-wrapper
 		block content
@@ -13,3 +17,7 @@ body
 		//- 	div(class="container")
 		//- 		a(href="https://github.com/TakNePoidet/webpack-starter", target="_blank", rel="noopener noreferrer")
 		//- 			img(src="../../images/github.svg", alt="")
+	script(
+		src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js'
+	)
+	script hljs.highlightAll();

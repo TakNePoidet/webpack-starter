@@ -63,14 +63,16 @@
 		"start": "webpack serve",
 		"build": "webpack --mode=production",
 		"lint": "eslint --fix ./src/js",
+		"svg-sprite": "mkdir -p ./src/images/ && svg-spreact ./src/images/icon/ > ./src/images/sprite.svg",
 		"stylelint": "stylelint --fix \"src/**/*.{scss,css,sass}\"",
 		"prettier": "prettier --write ./src",
 		"htmlhint": "htmlhint \"src/templates/**/*.html\"",
-		"beautifier": "npm run htmlhint && npm run lint && npm run prettier"
+		"beautifier": "yarn htmlhint && yarn lint && yarn prettier"
 	},
 	"dependencies": {
 		"core-js": "3",
-		"react": "^17.0.1"
+		"react": "^17.0.1",
+		"vue": "^3.0.7"
 	},
 	"peerDependencies": {
 		"react": "^17.0.1"

@@ -5,6 +5,8 @@
 		"sourceMap": false,
 		"allowJs": false,
 		"jsx": "react",
+		"moduleResolution": "node",
+		"module": "ESNext",
 		"declaration": true,
 		"forceConsistentCasingInFileNames": true,
 		"suppressImplicitAnyIndexErrors": true,
