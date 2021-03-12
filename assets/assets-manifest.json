@@ -1,0 +1,12 @@
+{
+  "index": {
+    "css": [
+      "assets/style/index-a7230cd08178486ab2d5.css"
+    ],
+    "js": [
+      "assets/js/runtime-a909b50dd9d9a64b367e.js",
+      "assets/js/vendor-c9fce7a600dbaec0a693.js",
+      "assets/js/index-5b46d61dea71f28f3e3c.js"
+    ]
+  }
+}
