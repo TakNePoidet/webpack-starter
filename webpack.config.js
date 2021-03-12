@@ -213,8 +213,6 @@ module.exports = (env) => {
 						return;
 					}
 					const error = errors[0];
-
-					console.log(severity, error);
 					notifier.notify({
 						title: 'Webpack error',
 						message: `${severity}: ${error.name}`,
@@ -263,7 +261,23 @@ module.exports = (env) => {
 				output: path.join(__dirname, 'dist/assets/manifest.json')
 			}),
 			new CopyPlugin({
-				patterns: [{ from: './static', to: '.' }]
+				patterns: [
+					{
+						from: './static',
+						to: '.',
+						filter: async (resourcePath) => {
+							const relativePath = resourcePath.replace(
+								path.join(__dirname, './static', '/'),
+								''
+							);
+							if (['README.md'].includes(relativePath)) {
+								return false;
+							}
+							return true;
+						},
+						globOptions: {}
+					}
+				]
 			})
 		],
 		resolve: {
