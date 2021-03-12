@@ -1,14 +1,7 @@
-import '../style/index.scss';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import vue from 'vue';
+import { createApp } from 'vue';
+import AppVue from './component/app.vue';
+import '~style/index.scss';
 
-console.log(vue);
-class Logger {
-	static print(text: string) {
-		console.log(text);
-	}
-}
-
-window.addEventListener('load', () => {
-	Logger.print('Load');
+window.addEventListener('DOMContentLoaded', () => {
+	createApp(AppVue).mount('#app-vue');
 });

@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const CopyPlugin = require('copy-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
@@ -13,6 +13,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const DotenvWebpack = require('dotenv-webpack');
 const { merge } = require('webpack-merge');
 const {
 	ids: { HashedModuleIdsPlugin },
@@ -24,10 +25,8 @@ const styleLoader = ({ isDev }, ...extra) => [
 	isDev
 		? 'style-loader'
 		: {
-			loader: MiniCssExtractPlugin.loader,
-			options: {
-
-			}
+				loader: MiniCssExtractPlugin.loader,
+				options: {}
 		  },
 	{
 		loader: 'css-loader',
@@ -42,7 +41,10 @@ const styleLoader = ({ isDev }, ...extra) => [
 	...extra
 ];
 
-const generateHtmlPlugins = (entryFolder = path.join(__dirname, 'src/templates/views'), test = /\.(pug|html)$/) => {
+const generateHtmlPlugins = (
+	entryFolder = path.join(__dirname, 'src/templates/views'),
+	test = /\.(pug|html)$/
+) => {
 	function scanFolder(folder, files = []) {
 		// eslint-disable-next-line no-restricted-syntax
 		for (const item of fs.readdirSync(folder)) {
@@ -50,22 +52,28 @@ const generateHtmlPlugins = (entryFolder = path.join(__dirname, 'src/templates/v
 
 			if (fs.lstatSync(pathfile).isDirectory()) {
 				files.push(...scanFolder(pathfile));
-			} else if (test.exec(pathfile)) {files.push(pathfile);}
+			} else if (test.exec(pathfile)) {
+				files.push(pathfile);
+			}
 		}
 		return files;
 	}
 
-	return scanFolder(entryFolder).map((pathfile) => {
-		const template = path.relative(__dirname, pathfile);
+	return (
+		scanFolder(entryFolder).map((pathfile) => {
+			const template = path.relative(__dirname, pathfile);
 
-		return new HTMLWebpackPlugin({
-			filename: template.replace('src/templates/views/', '').replace(test, '.html'),
-			template
-		});
-	}) ?? new HTMLWebpackPlugin();
+			return new HTMLWebpackPlugin({
+				filename: template
+					.replace('src/templates/views/', '')
+					.replace(test, '.html'),
+				template
+			});
+		}) ?? new HTMLWebpackPlugin()
+	);
 };
 
-module.exports = env => {
+module.exports = (env) => {
 	const isDev = env.WEBPACK_BUNDLE !== true;
 	const commonConfig = {
 		entry: {
@@ -95,7 +103,7 @@ module.exports = env => {
 					)
 				},
 				{
-					test: /\.js?$/,
+					test: /\.jsx?$/,
 					exclude: /node_modules/,
 					use: [
 						{
@@ -105,7 +113,7 @@ module.exports = env => {
 					]
 				},
 				{
-					test: /\.ts?$/,
+					test: /\.tsx?$/,
 					exclude: /node_modules/,
 					use: [
 						{
@@ -125,7 +133,7 @@ module.exports = env => {
 					exclude: [/\.(inline.svg)$/],
 					loader: 'file-loader',
 					options: {
-              limit: 8192,
+						limit: 8192,
 						name: '[name]-[contenthash].[ext]',
 						outputPath: 'assets/images',
 						esModule: false,
@@ -154,26 +162,34 @@ module.exports = env => {
 						{
 							loader: 'html-loader',
 							options: {
-								esModule: false,
+								esModule: false
 							}
 						}
 					]
 				},
 				{
 					test: /\.pug$/,
-					use: [
+					oneOf: [
 						{
-							loader: 'html-loader',
-							options: {
-								esModule: false
-							}
+							resourceQuery: /^\?vue/,
+							use: ['pug-plain-loader']
 						},
 						{
-							loader: 'pug-html-loader',
-							options: {
-								'pretty':true,
-								basedir: path.resolve(__dirname, './src')
-							}
+							use: [
+								{
+									loader: 'html-loader',
+									options: {
+										esModule: false
+									}
+								},
+								{
+									loader: 'pug-html-loader',
+									options: {
+										pretty: true,
+										basedir: path.resolve(__dirname, './src')
+									}
+								}
+							]
 						}
 					]
 				}
@@ -182,6 +198,7 @@ module.exports = env => {
 		plugins: [
 			...generateHtmlPlugins(),
 			new HtmlWebpackPugPlugin(),
+			new DotenvWebpack(),
 			new ESLintPlugin({
 				context: './src',
 				extensions: ['.js', '.ts', '.vue']
@@ -250,9 +267,17 @@ module.exports = env => {
 			})
 		],
 		resolve: {
-			extensions: ['.js', '.ts', '.vue', '.jsx', '.tsx', '.scss', '.sass', '.svg'],
+			extensions: ['.js', '.ts', '.jsx', '.tsx'],
 			alias: {
-				vue: 'vue/dist/vue.esm.js'
+				'~': path.resolve(__dirname, './src'),
+				'~js': path.resolve(__dirname, './src/js'),
+				'~libs': path.resolve(__dirname, './src/js/libs'),
+				'~type': path.resolve(__dirname, './src/js/types'),
+				'~interface': path.resolve(__dirname, './src/js/interface'),
+				'~style': path.resolve(__dirname, './src/style'),
+				'~fonts': path.resolve(__dirname, './src/fonts'),
+				'~images': path.resolve(__dirname, './src/images'),
+				'~components': path.resolve(__dirname, './src/js/components')
 			}
 		},
 		optimization: {
@@ -327,18 +352,14 @@ module.exports = env => {
 			}),
 			new ImageMinimizerPlugin({
 				test: /\.(jpe?g|png|gif|svg)$/i,
+				exclude: [/sprite.svg/],
 				deleteOriginalAssets: true,
 				minimizerOptions: {
 					plugins: [
 						['gifsicle', { interlaced: true }],
 						['jpegtran', { progressive: true }],
 						['optipng', { optimizationLevel: 5 }],
-						[
-							'svgo',
-							{
-
-							}
-						]
+						['svgo', {}]
 					]
 				}
 			})

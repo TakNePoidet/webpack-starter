@@ -13,7 +13,20 @@
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"experimentalDecorators": true,
-		"emitDeclarationOnly": false
+		"emitDeclarationOnly": false,
+		"rootDir": "./src",
+		"baseUrl": "./src",
+		"paths": {
+			"~/*": ["/*"],
+			"~js/*": ["./js/*"],
+			"~libs/*": ["./js/libs/*"],
+			"~types/*": ["./js/types/*"],
+			"~interface/*": ["./js/interface/*"],
+			"~style/*": ["./style/*"],
+			"~fonts/*": ["./fonts/*"],
+			"~images/*": ["./images/*"],
+			"~components/*": ["./js/components/*"]
+		}
 	},
 	"exclude": ["./node_modules"]
 }

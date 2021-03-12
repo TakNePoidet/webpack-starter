@@ -18,6 +18,7 @@ block content
 				p Простой инструментарий веб-разработки с использованием <mark>Webpack</mark>. Подходит для создания статических HTML-шаблонов, разработки тем <mark>Wordpress</mark>, <mark>Laravel</mark> и frontend проекта.
 				figure
 					img(src='../../images/webpack.png', alt='')
+
 	section.section.section--oportunities
 		.container
 			h3.section__title Возможности
@@ -40,33 +41,10 @@ block content
 						| Делает код красивее с <mark>Stylelint</mark>, <mark>Prettier</mark>, <mark>Eslint</mark>;
 					li
 						+icon('tick', 30, 30)
-						| Оптимизация всех ресурсов для более быстрой загрузки страницы;
+						| Оптимизация всех ресурсов для более быстрой загрузки страницы.
 
 	section.section
 		.container
 			h3.section__title Команды
 			.section__content
-				p Запуск сервера в режиме разработки
-				pre
-					code.language-bash $ yarn start
-
-				p Запуск сервера в продакшен режиме
-				pre
-					code.language-bash $ yarn build
-
-				p Форматирование и проверка кода
-				pre
-					code.language-bash
-						| $ yarn lint # поверка JavaScript, TypeScript и Vue
-						| $ yarn stylelint # форматирование стилей
-						| $ yarn htmlhint # форматирование html
-						| $ yarn prettier # форматирование кода
-						| $ yarn beautifier # запуск всех команд для форматирования
-
-				p Герерация svg спрайта
-				pre
-					code.language-bash $ yarn svg-sprite
-
-				p Альтернативный синтаксис
-				pre
-					code.language-bash $ npm run &lt;script&gt;
+				#app-vue
