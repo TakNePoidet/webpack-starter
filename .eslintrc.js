@@ -1,7 +1,7 @@
 module.exports = {
 	extends: ['taknepoidet'],
 	rules: {
-		'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx']}],
+		'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }],
 		'import/extensions': [
 			'error',
 			'always',
@@ -19,7 +19,7 @@ module.exports = {
 				extensions: ['.scss', '.sass', '.ts', '.js', '.tsx', '.jsx']
 			},
 			webpack: {
-				config: './webpack.config.js',
+				config: './build/prod.webpack.config.js',
 				env: {
 					NODE_ENV: 'local',
 					production: true

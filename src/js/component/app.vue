@@ -24,6 +24,14 @@ p герерация svg спрайта
 pre
 	code.language-bash yarn svg-sprite
 
+p анализ размера сборки
+pre
+	code.language-bash yarn analyzer
+
+p публикация на Github Pages
+pre
+	code.language-bash yarn deploy
+
 p
 	small альтернативный синтаксис
 	pre
