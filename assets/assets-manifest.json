@@ -1,12 +1,12 @@
 {
   "index": {
     "css": [
-      "assets/style/index-819f38fe8055e4639245.css"
+      "assets/style/index-d92b3d0c42543af4eb0b.css"
     ],
     "js": [
-      "assets/js/runtime-a909b50dd9d9a64b367e.js",
+      "assets/js/runtime-86b56326285a9927899c.js",
       "assets/js/vendor-c9fce7a600dbaec0a693.js",
-      "assets/js/index-f02910c8a74eaaf2e857.js"
+      "assets/js/index-711e7c1b81612fce8253.js"
     ]
   }
 }
