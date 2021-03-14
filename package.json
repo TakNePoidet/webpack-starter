@@ -1,7 +1,6 @@
 {
 	"name": "webpack-starter",
 	"version": "1.0.0",
-	"main": "index.js",
 	"license": "MIT",
 	"devDependencies": {
 		"@babel/core": "^7.13.10",
@@ -72,13 +71,13 @@
 		"start": "webpack serve --config ./build/dev.webpack.config.js",
 		"build": "webpack --mode=production --config ./build/prod.webpack.config.js",
 		"analyzer": "webpack --mode=production --config ./build/analyzer.webpack.config.js",
-		"lint": "eslint --fix ./src/js",
+		"lint": "eslint --fix .",
 		"svg-sprite": "mkdir -p ./src/images/ && svg-spreact --optimize true --tidy false ./src/images/icon/ > ./src/images/sprite.svg",
 		"stylelint": "stylelint --fix \"src/**/*.{scss,css,sass}\"",
-		"prettier": "prettier --write ./src",
-		"htmlhint": "htmlhint \"src/templates/**/*.html\"",
+		"prettier": "prettier --ignore-unknown --write .",
+		"htmlhint": "htmlhint \"src/templates/*\"",
 		"beautifier": "yarn htmlhint && yarn lint && yarn prettier",
-		"deploy": "gh-pages -d dist"
+		"deploy": "yarn build && gh-pages -d dist"
 	},
 	"dependencies": {
 		"core-js": "3",

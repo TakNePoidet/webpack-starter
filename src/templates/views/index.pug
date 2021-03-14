@@ -9,7 +9,7 @@ block content
 				.home-title
 					h1 Webpack Starter
 					.home-title__author от
-						b TakNePoidet
+						b &nbsp; TakNePoidet
 
 	section.section
 		.container
@@ -32,7 +32,7 @@ block content
 						| Поддержка фреймворков <mark>Vue</mark> и <mark>React</mark>;
 					li
 						+icon('tick', 30, 30)
-						| Расширинная типизация с <mark>TypeScript</mark>;
+						| Расширенная типизация с <mark>TypeScript</mark>;
 					li
 						+icon('tick', 30, 30)
 						| Поддержка шаблонизатора <mark>Pug</mark>;
@@ -42,6 +42,38 @@ block content
 					li
 						+icon('tick', 30, 30)
 						| Оптимизация всех ресурсов для более быстрой загрузки страницы.
+
+	section.section
+		.container
+			h3.section__title Старт
+			.section__content
+				p Клонируйте репозиторий
+				pre
+					code.language-bash git clone https://github.com/TakNePoidet/webpack-starter.git <имя проекта>
+
+				p перейдите в папку с проектом
+				pre
+					code.language-bash cd <имя проекта>
+
+				p удалите папку в <code>.git</code>
+				pre
+					code.language-bash rm -R ./git
+
+				p установите пакеты для разработки
+				pre
+					code.language-bash yarn # или npm i
+
+				p по желанию справьте данные в
+				pre
+					code.language-json
+						| {
+						| &nbsp;&nbsp;&nbsp;&nbsp;"name": "webpack-starter",
+						| &nbsp;&nbsp;&nbsp;&nbsp;"version": "1.0.0",
+						| &nbsp;&nbsp;&nbsp;&nbsp;"license": "MIT",
+						| }
+				p Разрабатывайте
+				pre
+					code.language-javascript await new Coding().go()
 
 	section.section
 		.container

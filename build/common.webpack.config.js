@@ -20,8 +20,8 @@ const styleLoader = ({ isDev }, ...extra) => [
 	isDev
 		? 'style-loader'
 		: {
-			loader: MiniCssExtractPlugin.loader,
-			options: {}
+				loader: MiniCssExtractPlugin.loader,
+				options: {}
 		  },
 	{
 		loader: 'css-loader',
@@ -56,7 +56,7 @@ const styleRules = ({ isDev = false }) => [
 	}
 ];
 const generateHtmlPlugins = (
-	entryFolder = path.join(__dirname, '../src/templates/views'),
+	entryFolder = path.resolve(__dirname, '../src/templates/views'),
 	test = /\.(pug|html)$/,
 	options = {}
 ) => {
@@ -76,20 +76,20 @@ const generateHtmlPlugins = (
 
 	return (
 		scanFolder(entryFolder).map((pathfile) => {
-			console.log(pathfile);
-			const template = path.relative(__dirname, pathfile);
+			const template = path.resolve(__dirname, pathfile);
 
 			return new HTMLWebpackPlugin({
 				filename: template
-					.replace('../src/templates/views/', './')
+					.replace(`${entryFolder}/`, './')
 					.replace(test, '.html'),
-				template: template.replace('../src/', './src/')
+				template
 			});
 		}) ?? new HTMLWebpackPlugin()
 	);
 };
 
 exports.styleRules = styleRules;
+
 exports.commonConfig = {
 	entry: {
 		index: './src/js/index.ts'
@@ -202,10 +202,6 @@ exports.commonConfig = {
 			extensions: ['.js', '.ts', '.vue']
 		}),
 		new FriendlyErrorsWebpackPlugin({
-			// compilationSuccessInfo: {
-			// 	messages: ['You application is running here http://localhost:3000'],
-			// 	notes: ['Some additionnal notes to be displayed unpon successful compilation']
-			// },
 			onErrors(severity, errors) {
 				if (severity !== 'error') {
 					return;

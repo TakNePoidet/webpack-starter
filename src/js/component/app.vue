@@ -1,17 +1,13 @@
 <template lang="pug">
-link(
-	rel='stylesheet',
-	href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/vs2015.min.css'
-)
-p запуск сервера в режиме разработки
+p Запуск сервера в режиме разработки
 pre
 	code.language-bash yarn start
 
-p запуск сервера в продакшен режиме
+p Запуск сервера в продакшен режиме
 pre
 	code.language-bash yarn build
 
-p форматирование и проверка кода
+p Форматирование и проверка кода
 pre
 	code.language-bash
 		| yarn lint # поверка JavaScript, TypeScript и Vue
@@ -20,22 +16,20 @@ pre
 		| yarn prettier # форматирование кода
 		| yarn beautifier # запуск всех команд для форматирования
 
-p герерация svg спрайта
+p Генерация svg спрайта
 pre
 	code.language-bash yarn svg-sprite
 
-p анализ размера сборки
+p Анализ размера сборки
 pre
 	code.language-bash yarn analyzer
 
-p публикация на Github Pages
+p Публикация на Github Pages
 pre
 	code.language-bash yarn deploy
 
-p
-	small альтернативный синтаксис
-	pre
-		code.language-bash npm run &lt;script&gt;
+pre
+	code.language-bash npm run &lt;script&gt; #альтернативный синтаксис
 </template>
 
 <script>
