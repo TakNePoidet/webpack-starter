@@ -37,7 +37,16 @@ rm -R ./git
 yarn # или npm i
 ```
 
-Разработывайте
+по желанию исправьте данные в package.json
+
+```json
+{
+	"name": "<имя проекта>",
+	"version": "<версия>"
+}
+```
+
+разрабатывайте
 
 ```javascript
 await new Coding().go();
