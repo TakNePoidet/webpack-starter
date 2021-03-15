@@ -73,19 +73,24 @@ const generateHtmlPlugins = (
 		}
 		return files;
 	}
+	if (fs.existsSync(entryFolder)) {
+		const files = scanFolder(entryFolder);
 
-	return (
-		scanFolder(entryFolder).map((pathfile) => {
-			const template = path.resolve(__dirname, pathfile);
+		if (files.length > 0) {
+			return scanFolder(entryFolder).map((pathfile) => {
+				const template = path.resolve(__dirname, pathfile);
 
-			return new HTMLWebpackPlugin({
-				filename: template
-					.replace(`${entryFolder}/`, './')
-					.replace(test, '.html'),
-				template
+				return new HTMLWebpackPlugin({
+					filename: template
+						.replace(`${entryFolder}/`, './')
+						.replace(test, '.html'),
+					template
+				});
 			});
-		}) ?? new HTMLWebpackPlugin()
-	);
+		}
+	}
+
+	return [new HTMLWebpackPlugin()];
 };
 
 exports.styleRules = styleRules;
