@@ -6924,6 +6924,11 @@ language-tags@^1.0.5:
   dependencies:
     language-subtag-registry "~0.3.2"
 
+layout-grid-helper@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/layout-grid-helper/-/layout-grid-helper-1.0.2.tgz#6ec0b04f531f5250b04dad4ed475a4c3600ff6a6"
+  integrity sha512-ErvYzdi2g+U2JOhyIf1rPZRPcvs1krhdmkQGuvQG6cHF7q9PXlw1xrS3MRF/fTfAxNFAQJiHuqxXfk4SCBW4BA==
+
 lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"

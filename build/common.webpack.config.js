@@ -11,8 +11,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const DotenvWebpack = require('dotenv-webpack');
 const {
-	ids: { HashedModuleIdsPlugin },
-	EnvironmentPlugin
+	ids: { HashedModuleIdsPlugin }
 } = require('webpack');
 const notifier = require('node-notifier');
 
@@ -225,10 +224,6 @@ exports.commonConfig = {
 		}),
 		new VueLoaderPlugin(),
 		new WebpackBar(),
-		new EnvironmentPlugin({
-			NODE_ENV: 'production',
-			DEBUG: false
-		}),
 		new HashedModuleIdsPlugin({
 			hashFunction: 'sha256',
 			hashDigest: 'hex',

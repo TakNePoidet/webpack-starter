@@ -4,6 +4,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { EnvironmentPlugin } = require('webpack');
 const { styleRules, commonConfig } = require('./common.webpack.config');
 
 module.exports = merge(commonConfig, {
@@ -58,6 +59,10 @@ module.exports = merge(commonConfig, {
 					['svgo', {}]
 				]
 			}
+		}),
+		new EnvironmentPlugin({
+			NODE_ENV: 'production',
+			DEBUG: false
 		})
 	]
 });

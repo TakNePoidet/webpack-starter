@@ -81,7 +81,8 @@
 	},
 	"dependencies": {
 		"core-js": "3",
-		"vue": "^3.0.7"
+		"vue": "^3.0.7",
+		"layout-grid-helper": "^1.0.2"
 	},
 	"peerDependencies": {
 		"react": "^17.0.1"

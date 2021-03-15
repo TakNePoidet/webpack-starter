@@ -25,19 +25,11 @@ body {
 .container {
 	width: 1200px;
 	margin: auto;
-	padding: 0 30px;
+	// padding: 0 30px;
 }
 
 #page-wrapper {
 	margin: 0 auto;
-}
-
-mark {
-	// background-color: var(--primary-brand-color-opacity);
-	// font-weight: bold;
-	// padding: 0px 5px;
-	background-color: transparent;
-	border-bottom: 2px solid var(--primary-brand-color);
 }
 
 footer {
@@ -96,6 +88,23 @@ footer {
 				box-shadow: 0 10px 20px rgba($color: #000, $alpha: 0.1);
 				pointer-events: none;
 			}
+		}
+		p,
+		ul,
+		ul,
+		h1,
+		h3 {
+			span {
+				// background-color: var(--primary-brand-color-opacity);
+				// font-weight: bold;
+				// padding: 0px 5px;
+				background-color: transparent;
+				border-bottom: 2px solid var(--primary-brand-color);
+			}
+		}
+		mark {
+			background-color: transparent;
+			color: #a31515;
 		}
 	}
 }

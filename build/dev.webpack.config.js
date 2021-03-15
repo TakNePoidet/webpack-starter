@@ -1,6 +1,7 @@
 const { merge } = require('webpack-merge');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { EnvironmentPlugin } = require('webpack');
 const { styleRules, commonConfig } = require('./common.webpack.config');
 
 module.exports = merge(commonConfig, {
@@ -16,6 +17,12 @@ module.exports = merge(commonConfig, {
 		contentBase: path.join(__dirname, '../dist'),
 		compress: true,
 		port: 8081,
-		open: false
-	}
+		open: true
+	},
+	plugins: [
+		new EnvironmentPlugin({
+			NODE_ENV: 'development',
+			DEBUG: true
+		})
+	]
 });
