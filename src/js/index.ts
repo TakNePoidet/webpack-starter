@@ -6,14 +6,18 @@ import '~style/style.css';
 
 window.addEventListener('DOMContentLoaded', () => {
 	createApp(AppVue).mount('#app-vue');
+
+	const layoutGridHelper = LayoutGridHelper({
+		prefix: 'gh',
+		sides: '0px',
+		gutter: '30px',
+		columns: 12,
+		mobileFirst: false,
+		container: '1200px'
+	});
+
+	layoutGridHelper.init();
 	if (process.env.NODE_ENV === 'development') {
-		LayoutGridHelper({
-			prefix: 'gh',
-			sides: '0px',
-			gutter: '30px',
-			columns: 12,
-			mobileFirst: false,
-			container: '1200px'
-		}).init();
+		console.log(layoutGridHelper);
 	}
 });
