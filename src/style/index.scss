@@ -112,11 +112,7 @@ footer {
 .section.section--home {
 	$self: '.section';
 
-	background-image: linear-gradient(
-		0deg,
-		var(--primary-brand-color-opacity-20),
-		transparent
-	);
+	background-image: linear-gradient(0deg, var(--primary-brand-color-opacity-20), transparent);
 	#{$self}__content {
 		display: flex;
 		align-items: center;

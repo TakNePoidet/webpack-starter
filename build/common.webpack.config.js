@@ -10,6 +10,8 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const DotenvWebpack = require('dotenv-webpack');
+const WebpackChunksAssetsManifest = require('webpack-chunks-assets-manifest');
+
 const {
 	ids: { HashedModuleIdsPlugin }
 } = require('webpack');
@@ -80,9 +82,7 @@ const generateHtmlPlugins = (
 				const template = path.resolve(__dirname, pathfile);
 
 				return new HTMLWebpackPlugin({
-					filename: template
-						.replace(`${entryFolder}/`, './')
-						.replace(test, '.html'),
+					filename: template.replace(`${entryFolder}/`, './').replace(test, '.html'),
 					template
 				});
 			});
@@ -229,27 +229,9 @@ exports.commonConfig = {
 			hashDigest: 'hex',
 			hashDigestLength: 20
 		}),
-		new WebpackAssetsManifest({
+		new WebpackChunksAssetsManifest({
 			writeToDisk: true,
-			output: path.join(__dirname, '../dist/assets/assets-manifest.json'),
-			entrypoints: true,
-			transform(assets) {
-				const entrypoints = {};
-
-				// eslint-disable-next-line no-restricted-syntax
-				for (const key of Object.keys(assets.entrypoints)) {
-					if (Object.hasOwnProperty.call(assets.entrypoints, key)) {
-						const element = assets.entrypoints[key];
-						const { js, css } = element.assets;
-
-						entrypoints[key] = {
-							css,
-							js
-						};
-					}
-				}
-				return entrypoints;
-			}
+			output: path.join(__dirname, '../dist/assets/chunks-manifest.json')
 		}),
 		new WebpackAssetsManifest({
 			writeToDisk: true,
@@ -261,10 +243,7 @@ exports.commonConfig = {
 					from: './static',
 					to: '.',
 					async filter(resourcePath) {
-						const relativePath = resourcePath.replace(
-							path.join(__dirname, '../static', '/'),
-							''
-						);
+						const relativePath = resourcePath.replace(path.join(__dirname, '../static', '/'), '');
 
 						if (['README.md'].includes(relativePath)) {
 							return false;
