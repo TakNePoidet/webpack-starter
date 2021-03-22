@@ -230,7 +230,7 @@ exports.commonConfig = {
 			hashDigestLength: 20
 		}),
 		new WebpackChunksAssetsManifest({
-			writeToDisk: true,
+			// writeToDisk: true,
 			output: path.join(__dirname, '../dist/assets/chunks-manifest.json')
 		}),
 		new WebpackAssetsManifest({
