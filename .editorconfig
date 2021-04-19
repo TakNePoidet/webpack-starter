@@ -4,6 +4,13 @@ root = false
 charset = utf-8
 indent_style = tab
 indent_size = 2
-end_of_line = CRLF
+end_of_line = LF
 insert_final_newline = true
 trim_trailing_whitespace = true
+
+[*.{md,txt}]
+indent_style = space
+indent_size = 2
+end_of_line = LF
+
+trim_trailing_whitespace = false

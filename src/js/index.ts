@@ -1,6 +1,6 @@
 import LayoutGridHelper from 'layout-grid-helper';
 import { createApp } from 'vue';
-import AppVue from './component/app.vue';
+import AppVue from '~components/app.vue';
 import '~style/index.scss';
 import '~style/style.css';
 

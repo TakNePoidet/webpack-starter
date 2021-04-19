@@ -11,7 +11,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const DotenvWebpack = require('dotenv-webpack');
 const WebpackChunksAssetsManifest = require('webpack-chunks-assets-manifest');
-
+const { EnvironmentPlugin } = require('webpack');
 const {
 	ids: { HashedModuleIdsPlugin }
 } = require('webpack');
@@ -184,6 +184,7 @@ exports.commonConfig = {
 									esModule: false
 								}
 							},
+
 							{
 								loader: 'pug-html-loader',
 								options: {
@@ -230,7 +231,7 @@ exports.commonConfig = {
 			hashDigestLength: 20
 		}),
 		new WebpackChunksAssetsManifest({
-			// writeToDisk: true,
+			writeToDisk: true,
 			output: path.join(__dirname, '../dist/assets/chunks-manifest.json')
 		}),
 		new WebpackAssetsManifest({
@@ -253,6 +254,11 @@ exports.commonConfig = {
 					globOptions: {}
 				}
 			]
+		}),
+		new EnvironmentPlugin({
+			__BROWSER__: JSON.stringify(true),
+			'process.client': JSON.stringify(true),
+			'process.server': JSON.stringify(false)
 		})
 	],
 	resolve: {
@@ -266,7 +272,9 @@ exports.commonConfig = {
 			'~style': path.resolve(__dirname, '../src/style'),
 			'~fonts': path.resolve(__dirname, '../src/fonts'),
 			'~images': path.resolve(__dirname, '../src/images'),
-			'~components': path.resolve(__dirname, '../src/js/components')
+			'~components': path.resolve(__dirname, '../src/js/components'),
+			'~store': path.resolve(__dirname, '../src/js/store'),
+			'~pages': path.resolve(__dirname, '../src/js/pages')
 		}
 	},
 	optimization: {

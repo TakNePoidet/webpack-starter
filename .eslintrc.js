@@ -1,7 +1,6 @@
 module.exports = {
 	extends: ['taknepoidet'],
 	rules: {
-		'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }],
 		'import/extensions': [
 			'error',
 			'always',
