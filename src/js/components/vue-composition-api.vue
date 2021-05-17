@@ -1,35 +1,19 @@
 <template>
 	<div>
+		<div>{{ article.id }}</div>
 		<div>{{ isLover ? loverTitle : upperTitle }}</div>
 		<button @click="clickHandle">click</button>
 	</div>
 </template>
 
 <script lang="ts">
-import { ComponentPropsOptions, ComputedGetter, ComputedOptions, defineComponent, MethodOptions } from 'vue';
+import { defineComponent } from 'vue';
 
-interface Data {
-	isLover: boolean;
-}
-interface Props {
-	title: string;
-}
-interface Computed extends ComputedOptions {
-	loverTitle: ComputedGetter<string>;
-	upperTitle: ComputedGetter<string>;
-}
-interface Methods extends MethodOptions {
-	log: (text: string) => void;
-	clickHandle: (event: Event) => void;
-}
-export default defineComponent<ComponentPropsOptions<Props>, Props, Data, Computed, Methods>({
+export default defineComponent({
 	props: {
-		title: {
-			type: String,
-			required: false,
-			default() {
-				return 'Options API Typing';
-			}
+		article: {
+			type: Object,
+			required: true
 		}
 	},
 	data() {
@@ -38,15 +22,15 @@ export default defineComponent<ComponentPropsOptions<Props>, Props, Data, Comput
 		};
 	},
 	computed: {
-		upperTitle() {
-			const { title } = this;
+		upperTitle(): string {
+			const { title } = this.article;
 			const upper = title.toUpperCase();
 
 			this.log(`upperTitle: ${upper}`);
 			return upper;
 		},
-		loverTitle() {
-			const { title } = this;
+		loverTitle(): string {
+			const { title } = this.article;
 			const lover = title.toUpperCase();
 
 			this.log(`loverTitle: ${lover}`);
@@ -54,12 +38,11 @@ export default defineComponent<ComponentPropsOptions<Props>, Props, Data, Comput
 		}
 	},
 	methods: {
-		log(text) {
+		log(text: string) {
 			console.log(text);
 		},
-		clickHandle(event) {
+		clickHandle(event: Event) {
 			event.preventDefault();
-			this.log(this.titlePage);
 		}
 	}
 });

@@ -6,7 +6,6 @@ const WebpackAssetsManifest = require('webpack-assets-manifest');
 const CopyPlugin = require('copy-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const DotenvWebpack = require('dotenv-webpack');
@@ -15,7 +14,6 @@ const { EnvironmentPlugin } = require('webpack');
 const {
 	ids: { HashedModuleIdsPlugin }
 } = require('webpack');
-const notifier = require('node-notifier');
 
 const styleLoader = ({ isDev }, ...extra) => [
 	isDev
@@ -206,23 +204,6 @@ exports.commonConfig = {
 			context: '../src',
 			extensions: ['.js', '.ts', '.vue']
 		}),
-		new FriendlyErrorsWebpackPlugin({
-			onErrors(severity, errors) {
-				if (severity !== 'error') {
-					return;
-				}
-				const error = errors[0];
-
-				notifier.notify({
-					title: 'Webpack error',
-					message: `${severity}: ${error.name}`,
-					subtitle: error.file || ''
-				});
-			},
-			clearConsole: false,
-			additionalFormatters: [],
-			additionalTransformers: []
-		}),
 		new VueLoaderPlugin(),
 		new WebpackBar(),
 		new HashedModuleIdsPlugin({
@@ -243,15 +224,13 @@ exports.commonConfig = {
 				{
 					from: './static',
 					to: '.',
-					async filter(resourcePath) {
+					filter(resourcePath) {
 						const relativePath = resourcePath.replace(path.join(__dirname, '../static', '/'), '');
-
 						if (['README.md'].includes(relativePath)) {
 							return false;
 						}
 						return true;
-					},
-					globOptions: {}
+					}
 				}
 			]
 		}),
@@ -267,7 +246,7 @@ exports.commonConfig = {
 			'~': path.resolve(__dirname, '../src'),
 			'~js': path.resolve(__dirname, '../src/js'),
 			'~libs': path.resolve(__dirname, '../src/js/libs'),
-			'~type': path.resolve(__dirname, '../src/js/types'),
+			'~types': path.resolve(__dirname, '../src/js/types'),
 			'~interface': path.resolve(__dirname, '../src/js/interface'),
 			'~style': path.resolve(__dirname, '../src/style'),
 			'~fonts': path.resolve(__dirname, '../src/fonts'),
