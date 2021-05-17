@@ -26,14 +26,6 @@ module.exports = {
 			}
 		}
 	},
-	overrides: [
-		{
-			files: ['*jsx', '*.tsx'],
-			rules: {
-				'no-use-before-define': 'off'
-			}
-		}
-	],
 	globals: {
 		JSX: true
 	}
