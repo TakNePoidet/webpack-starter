@@ -1,3 +1,3 @@
 module.exports = {
-	...require('taknepoidet-prettier-config')
+	...require('@taknepoidet-config/prettier')
 };

@@ -19,15 +19,16 @@
 		"rootDir": "./src",
 		"baseUrl": "./src",
 		"paths": {
-			"~/*": ["/*"],
-			"~js/*": ["./js/*"],
-			"~libs/*": ["./js/libs/*"],
-			"~types/*": ["./js/types/*"],
-			"~interface/*": ["./js/interface/*"],
-			"~style/*": ["./style/*"],
-			"~fonts/*": ["./fonts/*"],
-			"~images/*": ["./images/*"],
-			"~components/*": ["./js/components/*"]
+			"@/*": ["/*"],
+			"@js/*": ["./js/*"],
+			"@libs/*": ["./js/libs/*"],
+			"@types/*": ["./js/types/*"],
+			"@style/*": ["./style/*"],
+			"@fonts/*": ["./fonts/*"],
+			"@images/*": ["./images/*"],
+			"@components/*": ["./js/components/*"],
+			"@store/*": ["./js/store/*"],
+			"@pages/*": ["./js/pages/*"]
 		}
 	},
 	"exclude": ["./node_modules"]

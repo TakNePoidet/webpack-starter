@@ -243,17 +243,16 @@ exports.commonConfig = {
 	resolve: {
 		extensions: ['.js', '.ts', '.jsx', '.tsx'],
 		alias: {
-			'~': path.resolve(__dirname, '../src'),
-			'~js': path.resolve(__dirname, '../src/js'),
-			'~libs': path.resolve(__dirname, '../src/js/libs'),
-			'~types': path.resolve(__dirname, '../src/js/types'),
-			'~interface': path.resolve(__dirname, '../src/js/interface'),
-			'~style': path.resolve(__dirname, '../src/style'),
-			'~fonts': path.resolve(__dirname, '../src/fonts'),
-			'~images': path.resolve(__dirname, '../src/images'),
-			'~components': path.resolve(__dirname, '../src/js/components'),
-			'~store': path.resolve(__dirname, '../src/js/store'),
-			'~pages': path.resolve(__dirname, '../src/js/pages')
+			'@': path.resolve(__dirname, '../src'),
+			'@js': path.resolve(__dirname, '../src/js'),
+			'@libs': path.resolve(__dirname, '../src/js/libs'),
+			'@types': path.resolve(__dirname, '../src/js/types'),
+			'@style': path.resolve(__dirname, '../src/style'),
+			'@fonts': path.resolve(__dirname, '../src/fonts'),
+			'@images': path.resolve(__dirname, '../src/images'),
+			'@components': path.resolve(__dirname, '../src/js/components'),
+			'@store': path.resolve(__dirname, '../src/js/store'),
+			'@pages': path.resolve(__dirname, '../src/js/pages')
 		}
 	},
 	optimization: {

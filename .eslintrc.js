@@ -1,5 +1,5 @@
 module.exports = {
-	extends: ['taknepoidet'],
+	extends: ['@taknepoidet-config/eslint-config'],
 	rules: {
 		'import/extensions': [
 			'error',
