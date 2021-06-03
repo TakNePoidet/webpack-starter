@@ -62,12 +62,12 @@ const generateHtmlPlugins = (
 	function scanFolder(folder, files = []) {
 		// eslint-disable-next-line no-restricted-syntax
 		for (const item of fs.readdirSync(folder)) {
-			const pathfile = `${folder}/${item}`;
+			const pathFile = `${folder}/${item}`;
 
-			if (fs.lstatSync(pathfile).isDirectory()) {
-				files.push(...scanFolder(pathfile));
-			} else if (test.exec(pathfile)) {
-				files.push(pathfile);
+			if (fs.lstatSync(pathFile).isDirectory()) {
+				files.push(...scanFolder(pathFile));
+			} else if (test.exec(pathFile)) {
+				files.push(pathFile);
 			}
 		}
 		return files;
@@ -76,8 +76,8 @@ const generateHtmlPlugins = (
 		const files = scanFolder(entryFolder);
 
 		if (files.length > 0) {
-			return scanFolder(entryFolder).map((pathfile) => {
-				const template = path.resolve(__dirname, pathfile);
+			return scanFolder(entryFolder).map((pathFile) => {
+				const template = path.resolve(__dirname, pathFile);
 
 				return new HTMLWebpackPlugin({
 					filename: template.replace(`${entryFolder}/`, './').replace(test, '.html'),
@@ -187,7 +187,7 @@ exports.commonConfig = {
 								loader: 'pug-html-loader',
 								options: {
 									pretty: true,
-									basedir: path.resolve(__dirname, '../src')
+									basedir: path.resolve(__dirname, '../src/templates')
 								}
 							}
 						]
@@ -226,10 +226,7 @@ exports.commonConfig = {
 					to: '.',
 					filter(resourcePath) {
 						const relativePath = resourcePath.replace(path.join(__dirname, '../static', '/'), '');
-						if (['README.md'].includes(relativePath)) {
-							return false;
-						}
-						return true;
+						return !['README.md'].includes(relativePath);
 					}
 				}
 			]
@@ -252,7 +249,8 @@ exports.commonConfig = {
 			'@images': path.resolve(__dirname, '../src/images'),
 			'@components': path.resolve(__dirname, '../src/js/components'),
 			'@store': path.resolve(__dirname, '../src/js/store'),
-			'@pages': path.resolve(__dirname, '../src/js/pages')
+			'@pages': path.resolve(__dirname, '../src/js/pages'),
+			'@templates': path.resolve(__dirname, '../src/templates')
 		}
 	},
 	optimization: {

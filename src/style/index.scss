@@ -9,17 +9,17 @@
 
 html,
 body {
+	min-width: 1400px;
 	height: 100%;
 	margin: 0;
-	min-width: 1400px;
 	text-size-adjust: 'none';
 }
 
 body {
 	width: 100%;
 	height: 100%;
-	font-family: 'Lato', sans-serif;
 	color: var(--text-base);
+	font-family: 'Lato', sans-serif;
 }
 
 .container {
@@ -42,25 +42,25 @@ footer {
 }
 
 .section {
-	// background-image: url('../images/github.svg');
 	margin: 50px auto;
 	margin-bottom: 100px;
+	background-image: url('~@images/webpack.png');
 
 	&__title {
+		position: relative;
+		margin-bottom: 30px;
+		padding-bottom: 10px;
 		font-size: 40px;
 		line-height: 1.5;
-		padding-bottom: 10px;
-		margin-bottom: 30px;
-		position: relative;
 
 		&::before {
-			height: 6px;
-			width: 100px;
-			content: '';
-			bottom: 0;
 			position: absolute;
-			border-radius: 3px;
+			bottom: 0;
+			width: 100px;
+			height: 6px;
 			background-color: var(--primary-brand-color);
+			border-radius: 3px;
+			content: '';
 		}
 	}
 
@@ -89,6 +89,7 @@ footer {
 				pointer-events: none;
 			}
 		}
+
 		p,
 		ul,
 		ul,
@@ -102,9 +103,10 @@ footer {
 				border-bottom: 2px solid var(--primary-brand-color);
 			}
 		}
+
 		mark {
-			background-color: transparent;
 			color: #a31515;
+			background-color: transparent;
 		}
 	}
 }
@@ -125,17 +127,17 @@ footer {
 			margin: 50px auto;
 
 			&__author {
+				font-size: 20px;
 				line-height: 2.2;
 				text-align: right;
-				font-size: 20px;
 			}
 
 			h1 {
 				margin: 0 auto;
-				font-size: 100px;
-				font-weight: 700;
-				line-height: 0.8;
 				color: var(--primary-brand-color);
+				font-weight: 700;
+				font-size: 100px;
+				line-height: 0.8;
 				letter-spacing: 4px;
 			}
 		}
@@ -151,10 +153,10 @@ footer {
 				line-height: 2;
 
 				.icon {
-					color: var(--primary-brand-color);
 					position: relative;
-					margin-right: 15px;
 					top: 3px;
+					margin-right: 15px;
+					color: var(--primary-brand-color);
 				}
 			}
 		}
@@ -162,12 +164,12 @@ footer {
 }
 
 .hljs {
-	background: #f1f1f1;
-	color: var(--text-base);
 	display: block;
-	overflow-x: auto;
 	padding: 15px;
+	overflow-x: auto;
+	color: var(--text-base);
 	font-size: 18px;
+	background: #f1f1f1;
 	box-shadow: 0 0 0 1px rgba($color: #000, $alpha: 0.1);
 	// box-shadow: 0px 0px 1px rgba($color: #000, $alpha: 0.1);
 	.hljs-comment {
