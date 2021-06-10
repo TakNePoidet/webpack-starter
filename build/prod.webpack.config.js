@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { EnvironmentPlugin } = require('webpack');
 const { styleRules, commonConfig } = require('./common.webpack.config');
 const { extendDefaultPlugins } = require('svgo');
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 
 module.exports = merge(commonConfig, {
 	mode: 'production',
@@ -47,6 +48,10 @@ module.exports = merge(commonConfig, {
 		new MiniCssExtractPlugin({
 			filename: 'assets/style/[name]-[contenthash].css',
 			chunkFilename: 'assets/style/[name]-[contenthash].css'
+		}),
+		new PreloadWebpackPlugin({
+			rel: 'preload',
+			include: 'asyncChunks'
 		}),
 		new ImageMinimizerPlugin({
 			loader: false,
