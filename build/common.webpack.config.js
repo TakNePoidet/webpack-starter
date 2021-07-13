@@ -243,7 +243,6 @@ exports.commonConfig = {
 			'@': path.resolve(__dirname, '../src'),
 			'@js': path.resolve(__dirname, '../src/js'),
 			'@libs': path.resolve(__dirname, '../src/js/libs'),
-			'@types': path.resolve(__dirname, '../src/js/types'),
 			'@style': path.resolve(__dirname, '../src/style'),
 			'@fonts': path.resolve(__dirname, '../src/fonts'),
 			'@images': path.resolve(__dirname, '../src/images'),

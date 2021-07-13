@@ -7,43 +7,51 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent, PropType, ref } from 'vue';
 
 export default defineComponent({
 	props: {
 		article: {
-			type: Object,
+			type: Object as PropType<{
+				id: number;
+				title: string;
+			}>,
 			required: true
 		}
 	},
-	data() {
-		return {
-			isLover: false
-		};
-	},
-	computed: {
-		upperTitle(): string {
-			const { title } = this.article;
-			const upper = title.toUpperCase();
 
-			this.log(`upperTitle: ${upper}`);
-			return upper;
-		},
-		loverTitle(): string {
-			const { title } = this.article;
-			const lover = title.toUpperCase();
+	setup(props) {
+		const isLover = ref(false);
 
-			this.log(`loverTitle: ${lover}`);
-			return lover;
-		}
-	},
-	methods: {
-		log(text: string) {
+		function log(text: string) {
 			console.log(text);
-		},
-		clickHandle(event: Event) {
+		}
+		function clickHandle(event: Event) {
 			event.preventDefault();
 		}
+
+		const upperTitle = computed(() => {
+			const { title } = props.article;
+			const upper = title.toUpperCase();
+
+			log(`upperTitle: ${upper}`);
+			return upper;
+		});
+		const loverTitle = computed(() => {
+			const { title } = props.article;
+			const lover = title.toUpperCase();
+
+			log(`loverTitle: ${lover}`);
+			return lover;
+		});
+
+		return {
+			isLover,
+			log,
+			clickHandle,
+			upperTitle,
+			loverTitle
+		};
 	}
 });
 </script>

@@ -1,1 +1,1 @@
-# Папка с JavaSctipt файлами
+# Папка с JavaScript файлами

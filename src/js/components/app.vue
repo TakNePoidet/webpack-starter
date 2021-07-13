@@ -32,11 +32,13 @@ pre
 	code.language-bash npm run &lt;script&gt; #альтернативный синтаксис
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
 	data() {
 		return {
-			script: null
+			script: null as HTMLScriptElement | null
 		};
 	},
 	mounted() {
@@ -52,7 +54,9 @@ export default {
 		document.body.appendChild(this.script);
 	},
 	beforeUnmount() {
-		this.script.parentElemet.remove(this.script);
+		if (this.script) {
+			this.script.remove();
+		}
 	}
-};
+});
 </script>

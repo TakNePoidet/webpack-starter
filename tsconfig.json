@@ -22,7 +22,6 @@
 			"@/*": ["/*"],
 			"@js/*": ["./js/*"],
 			"@libs/*": ["./js/libs/*"],
-			"@types/*": ["./js/types/*"],
 			"@style/*": ["./style/*"],
 			"@fonts/*": ["./fonts/*"],
 			"@images/*": ["./images/*"],

@@ -1,1 +1,1 @@
-# Типы TypeSctipt
+# Типы TypeScript
