@@ -7,7 +7,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const DotenvWebpack = require('dotenv-webpack');
 const WebpackChunksAssetsManifest = require('webpack-chunks-assets-manifest');
 const { EnvironmentPlugin } = require('webpack');
@@ -80,6 +79,18 @@ const generateHtmlPlugins = (
 				const template = path.resolve(__dirname, pathFile);
 
 				return new HTMLWebpackPlugin({
+					inject: true,
+					templateParameters(compilation, assets, options) {
+						return {
+							compilation: compilation,
+							webpack: compilation.getStats().toJson(),
+							webpackConfig: compilation.options,
+							htmlWebpackPlugin: {
+								files: assets,
+								options: options
+							}
+						};
+					},
 					filename: template.replace(`${entryFolder}/`, './').replace(test, '.html'),
 					template
 				});
@@ -177,14 +188,7 @@ exports.commonConfig = {
 					{
 						use: [
 							{
-								loader: 'html-loader',
-								options: {
-									esModule: false
-								}
-							},
-
-							{
-								loader: 'pug-html-loader',
+								loader: 'simple-pug-loader',
 								options: {
 									pretty: true,
 									basedir: path.resolve(__dirname, '../src/templates')
@@ -198,7 +202,6 @@ exports.commonConfig = {
 	},
 	plugins: [
 		...generateHtmlPlugins(),
-		new HtmlWebpackPugPlugin(),
 		new DotenvWebpack(),
 		new ESLintPlugin({
 			context: '../src',

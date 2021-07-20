@@ -3,4 +3,4 @@ mixin icon(icon, width, height)
 		if (!width) width = 35
 		if (!height ) height = width
 	svg.icon(width=width, height=height)
-		use(xlink:href="~@images/sprite.svg#" + icon)
+		use(xlink:href=require("@images/sprite.svg") + "#" + icon)
