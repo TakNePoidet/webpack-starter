@@ -14,14 +14,13 @@ module.exports = merge(commonConfig, {
 		rules: [...styleRules({ isDev: true })]
 	},
 	devServer: {
-		contentBase: path.join(__dirname, '../dist'),
 		compress: true,
 		port: 8081,
 		open: true,
 		historyApiFallback: true
 	},
 	plugins: [
-		new HotModuleReplacementPlugin(),
+		// new HotModuleReplacementPlugin(),
 		new EnvironmentPlugin({
 			NODE_ENV: 'development',
 			DEBUG: true,

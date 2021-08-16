@@ -13,6 +13,7 @@ const { EnvironmentPlugin } = require('webpack');
 const {
 	ids: { HashedModuleIdsPlugin }
 } = require('webpack');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const styleLoader = ({ isDev }, ...extra) => [
 	isDev
@@ -214,6 +215,7 @@ exports.commonConfig = {
 			hashDigest: 'hex',
 			hashDigestLength: 20
 		}),
+		new ForkTsCheckerWebpackPlugin(),
 		new WebpackChunksAssetsManifest({
 			writeToDisk: true,
 			output: path.join(__dirname, '../dist/assets/chunks-manifest.json')

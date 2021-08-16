@@ -18,5 +18,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		});
 
 		layoutGridHelper.init();
+		layoutGridHelper.show();
 	}
 });
