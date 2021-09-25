@@ -79,3 +79,19 @@
 .gitattributes export-ignore
 .gitignore     export-ignore
 .gitkeep       export-ignore
+
+
+*.css   text eol=lf
+*.html  text eol=lf
+*.pug  text eol=lf
+*.jade  text eol=lf
+*.js    text eol=lf
+*.ts    text eol=lf
+*.vue    text eol=lf
+*.json  text eol=lf
+*.less  text eol=lf
+*.scss  text eol=lf
+*.md    text eol=lf
+*.sh    text eol=lf
+*.txt   text eol=lf
+*.xml   text eol=lf
