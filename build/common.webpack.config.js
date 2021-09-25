@@ -17,14 +17,22 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const styleLoader = ({ isDev }, ...extra) => [
 	isDev
-		? 'style-loader'
+		? {
+			loader:  'style-loader',
+			options: {
+				esModule: false,
+			}
+		}
 		: {
 				loader: MiniCssExtractPlugin.loader,
-				options: {}
+				options: {
+					esModule: false,
+				}
 		  },
 	{
 		loader: 'css-loader',
 		options: {
+			esModule: false,
 			sourceMap: isDev
 		}
 	},
@@ -145,11 +153,11 @@ exports.commonConfig = {
 				exclude: [/\.(inline.svg)$/],
 				loader: 'file-loader',
 				options: {
-					limit: 8192,
+					// limit: 8192,
 					name: '[name]-[contenthash].[ext]',
 					outputPath: 'assets/images',
 					esModule: false,
-					useRelativePath: true
+					// useRelativePath: true
 				}
 			},
 			{

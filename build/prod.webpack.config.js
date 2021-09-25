@@ -66,18 +66,17 @@ module.exports = merge(commonConfig, {
 					[
 						'svgo',
 						{
-							plugins: extendDefaultPlugins([
-								{
-									name: 'removeViewBox',
-									active: false
-								},
-								{
-									name: 'addAttributesToSVGElement',
-									params: {
-										attributes: [{ xmlns: 'http://www.w3.org/2000/svg' }]
-									}
+							name: 'preset-default',
+							params: {
+								overrides: {
+									// customize plugin options
+									convertShapeToPath: {
+										convertArcs: true
+									},
+									// disable plugins
+									convertPathData: false
 								}
-							])
+							}
 						}
 					]
 				]
