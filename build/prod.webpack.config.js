@@ -6,14 +6,12 @@ const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { EnvironmentPlugin } = require('webpack');
 const { styleRules, commonConfig } = require('./common.webpack.config');
-const { extendDefaultPlugins } = require('svgo');
 const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 
 module.exports = merge(commonConfig, {
 	mode: 'production',
 	output: {
-		filename: 'assets/js/[name]-[contenthash].js',
-		publicPath: '/'
+		filename: 'js/[name]-[contenthash].js'
 	},
 	module: {
 		rules: [...styleRules({ isDev: false })]
@@ -31,7 +29,7 @@ module.exports = merge(commonConfig, {
 						inline: true,
 						passes: 1,
 						keep_fargs: false,
-						drop_console: true
+						drop_console: false
 					},
 					output: {
 						beautify: false,
@@ -46,8 +44,8 @@ module.exports = merge(commonConfig, {
 		new CleanWebpackPlugin(),
 		new CompressionPlugin(),
 		new MiniCssExtractPlugin({
-			filename: 'assets/style/[name]-[contenthash].css',
-			chunkFilename: 'assets/style/[name]-[contenthash].css'
+			filename: 'style/[name]-[contenthash].css',
+			chunkFilename: 'style/[name]-[contenthash].css'
 		}),
 		new PreloadWebpackPlugin({
 			rel: 'preload',
@@ -66,17 +64,22 @@ module.exports = merge(commonConfig, {
 					[
 						'svgo',
 						{
-							name: 'preset-default',
-							params: {
-								overrides: {
-									// customize plugin options
-									convertShapeToPath: {
-										convertArcs: true
-									},
-									// disable plugins
-									convertPathData: false
+							multipass: true, // boolean. false by default
+							plugins: [
+								{
+									name: 'preset-default',
+									params: {
+										overrides: {
+											// customize plugin options
+											convertShapeToPath: {
+												convertArcs: true
+											},
+											// disable plugins
+											convertPathData: false
+										}
+									}
 								}
-							}
+							]
 						}
 					]
 				]
@@ -84,6 +87,8 @@ module.exports = merge(commonConfig, {
 		}),
 		new EnvironmentPlugin({
 			NODE_ENV: 'production',
+			APP_VERSION: require('../package.json').version,
+			'process.env.APP_VERSION': require('../package.json').version,
 			DEBUG: false
 		})
 	]

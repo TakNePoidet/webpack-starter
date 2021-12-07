@@ -1,7 +1,0 @@
-
-{
-	"extends": ["@taknepoidet-config/stylelint"],
-	"rules": {
-		"declaration-colon-newline-after": null
-	}
-}

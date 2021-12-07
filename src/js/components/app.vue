@@ -10,23 +10,23 @@ pre
 p Форматирование и проверка кода
 pre
 	code.language-bash
-		| yarn lint # поверка JavaScript, TypeScript и Vue
-		| yarn stylelint # форматирование стилей
-		| yarn htmlhint # форматирование html
-		| yarn prettier # форматирование кода
-		| yarn beautifier # запуск всех команд для форматирования
+		| npm run lint # поверка JavaScript, TypeScript и Vue
+		| npm run stylelint # форматирование стилей
+		| npm run htmlhint # форматирование html
+		| npm run prettier # форматирование кода
+		| npm run beautifier # запуск всех команд для форматирования
 
 p Генерация svg спрайта
 pre
-	code.language-bash yarn svg-sprite
+	code.language-bash npm run svg-sprite
 
 p Анализ размера сборки
 pre
-	code.language-bash yarn analyzer
+	code.language-bash npm run analyzer
 
 p Публикация на Github Pages
 pre
-	code.language-bash yarn deploy
+	code.language-bash npm run deploy
 
 pre
 	code.language-bash npm run &lt;script&gt; #альтернативный синтаксис
