@@ -37,7 +37,42 @@ module.exports = merge(commonConfig, {
 					},
 					mangle: true
 				}
-			})
+			}),
+			new ImageMinimizerPlugin({
+				loader: false,
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				exclude: [/sprite.svg/],
+				deleteOriginalAssets: true,
+				minimizer: {
+					implementation: ImageMinimizerPlugin.imageminMinify,
+					options: {	plugins: [
+							['mozjpeg', { quality: 75, progressive: false }],
+							['gifsicle', { interlaced: true }],
+							['pngquant', { quality: [0.6, 0.8] }],
+							[
+								'svgo',
+								{
+									multipass: true, // boolean. false by default
+									plugins: [
+										{
+											name: 'preset-default',
+											params: {
+												overrides: {
+													// customize plugin options
+													convertShapeToPath: {
+														convertArcs: true
+													},
+													// disable plugins
+													convertPathData: false
+												}
+											}
+										}
+									]
+								}
+							]
+						]}
+				}
+			}),
 		]
 	},
 	plugins: [
@@ -50,40 +85,6 @@ module.exports = merge(commonConfig, {
 		new PreloadWebpackPlugin({
 			rel: 'preload',
 			include: 'asyncChunks'
-		}),
-		new ImageMinimizerPlugin({
-			loader: false,
-			test: /\.(jpe?g|png|gif|svg)$/i,
-			exclude: [/sprite.svg/],
-			deleteOriginalAssets: true,
-			minimizerOptions: {
-				plugins: [
-					['mozjpeg', { quality: 75, progressive: false }],
-					['gifsicle', { interlaced: true }],
-					['pngquant', { quality: [0.6, 0.8] }],
-					[
-						'svgo',
-						{
-							multipass: true, // boolean. false by default
-							plugins: [
-								{
-									name: 'preset-default',
-									params: {
-										overrides: {
-											// customize plugin options
-											convertShapeToPath: {
-												convertArcs: true
-											},
-											// disable plugins
-											convertPathData: false
-										}
-									}
-								}
-							]
-						}
-					]
-				]
-			}
 		}),
 		new EnvironmentPlugin({
 			NODE_ENV: 'production',
