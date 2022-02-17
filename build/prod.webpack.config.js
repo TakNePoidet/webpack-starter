@@ -45,7 +45,8 @@ module.exports = merge(commonConfig, {
 				deleteOriginalAssets: true,
 				minimizer: {
 					implementation: ImageMinimizerPlugin.imageminMinify,
-					options: {	plugins: [
+					options: {
+						plugins: [
 							['mozjpeg', { quality: 75, progressive: false }],
 							['gifsicle', { interlaced: true }],
 							['pngquant', { quality: [0.6, 0.8] }],
@@ -70,9 +71,10 @@ module.exports = merge(commonConfig, {
 									]
 								}
 							]
-						]}
+						]
+					}
 				}
-			}),
+			})
 		]
 	},
 	plugins: [
